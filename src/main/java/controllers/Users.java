@@ -60,16 +60,15 @@ public class Users{
         }
     }
     @POST
-    @Path("add")
-    public String UsersAdd(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("DateOfBirth") String DateOfBirth, @FormDataParam("Password") String Password, @FormDataParam("Token") Integer Token) {
+    @Path("pushlogin")
+    public String UsersAdd(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("DateOfBirth") String DateOfBirth, @FormDataParam("Password") String Password) {
         System.out.println("Invoked Users.UsersAdd()");
         try {
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Users (UserID, Username, DateOfBirth, Password, Token) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Users (UserID, Username, DateOfBirth, Password) VALUES (?, ?, ?, ?)");
             ps.setInt(1, UserID);
             ps.setString(2, Username);
             ps.setString(3, DateOfBirth);
             ps.setString(4, Password);
-            ps.setInt(5, Token);
             ps.execute();
             return "{\"OK\": \"Added user.\"}";
         } catch (Exception exception) {
@@ -78,6 +77,7 @@ public class Users{
         }
 
     }
+
 
 
 
