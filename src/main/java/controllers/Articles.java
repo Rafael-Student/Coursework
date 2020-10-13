@@ -59,7 +59,7 @@ public class Articles{
             return "{\"Error\": \"Unable to get item, please see server console for more info.\"}";
         }
     }
-    @DELETE
+    @POST
     @Path("delete/{ArticleID}")
     public String DeleteArticle(@PathParam("ArticleID") Integer ArticleID) {
         System.out.println("Invoked Articles.DeleteArticle() with ArticleID " + ArticleID);

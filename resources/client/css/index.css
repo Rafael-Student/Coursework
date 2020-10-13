@@ -1,0 +1,28 @@
+section {
+    border: 1px solid black;
+    width: 10%;
+    float: left;
+}
+
+div {
+    margin: 10px;
+    width: 150px;
+    height: 100px;
+}
+
+.left {
+    float: left;
+    background: white;
+    display: inline-block;
+}
+
+.right {
+    float: right;
+    background: cyan;
+}
+h1 {
+    font-size: xx-large;
+}
+.lobster {
+    font-family: 'Lobster', cursive;
+}
