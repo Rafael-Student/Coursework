@@ -9,6 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.UUID;
 
 @Path("users/")
 @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -76,6 +77,79 @@ public class Users{
             return "{\"Error\": \"Unable to create new item, please see server console for more info.\"}";
         }
 
+    }
+
+    @POST
+    @Path("login")
+    public String UsersLogin(@FormDataParam("Username") String Username, @FormDataParam("Password") String Password) {
+        System.out.println("Invoked loginUser() on path users/login");
+        try {
+            PreparedStatement ps1 = Main.db.prepareStatement("SELECT Password FROM Users WHERE Username = ?");
+            ps1.setString(1, Username);
+            ResultSet loginResults = ps1.executeQuery();
+            if (loginResults.next() == true) {
+                String correctPassword = loginResults.getString(1);
+                System.out.println("If 1");
+                if (Password.equals(correctPassword)) {
+                    System.out.println("If 2");
+                    String Token = UUID.randomUUID().toString();
+                    PreparedStatement ps2 = Main.db.prepareStatement("UPDATE Users SET Token = ? WHERE Username = ?");
+                    ps2.setString(1, Token);
+                    ps2.setString(2, Username);
+                    ps2.executeUpdate();
+                    JSONObject userDetails = new JSONObject();
+                    userDetails.put("UserName", Username);
+                    userDetails.put("Token", Token);
+                    return userDetails.toString();
+                } else {
+                    System.out.println("Else 1");
+                    return "{\"Error\": \"Incorrect password!\"}";
+                }
+            } else {
+                System.out.println("Else 2");
+                return "{\"Error\": \"Incorrect username.\"}";
+            }
+        } catch (Exception exception) {
+            System.out.println("Database error during /users/login: " + exception.getMessage());
+            return "{\"Error\": \"Server side error!\"}";
+        }
+    }
+    public static int validToken(String Token) {
+        System.out.println("Invoked User.validateToken(), Token value " + Token);
+        try {
+            PreparedStatement statement = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token = ?");
+            statement.setString(1, Token);
+            ResultSet resultSet = statement.executeQuery();
+            System.out.println("userID is " + resultSet.getInt("UserID"));
+            return resultSet.getInt("UserID");  //Retrieve by column name  (should really test we only get one result back!)
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return -1;  //rogue value indicating error
+        }
+    }
+    @POST
+    @Path("logout")
+    public static String logout(@CookieParam("Token") String Token){
+        try{
+            System.out.println("users/logout "+ Token);
+            PreparedStatement ps = Main.db.prepareStatement("SELECT UserID FROM Users WHERE Token=?");
+            ps.setString(1, Token);
+            ResultSet logoutResults = ps.executeQuery();
+            if (logoutResults.next()){
+                int UserID = logoutResults.getInt(1);
+                //Set the token to null to indicate that the user is not logged in
+                PreparedStatement ps1 = Main.db.prepareStatement("UPDATE Users SET Token = NULL WHERE UserID = ?");
+                ps1.setInt(1, UserID);
+                ps1.executeUpdate();
+                return "{\"status\": \"OK\"}";
+            } else {
+                return "{\"error\": \"Invalid token!\"}";
+
+            }
+        } catch (Exception ex) {
+            System.out.println("Database error during /users/logout: " + ex.getMessage());
+            return "{\"error\": \"Server side error!\"}";
+        }
     }
 
 
