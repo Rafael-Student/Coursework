@@ -21,12 +21,13 @@ public class Articles{
         System.out.println("Invoked Articles.ArticlesList()");
         JSONArray response = new JSONArray();
         try {
-            PreparedStatement ps = Main.db.prepareStatement("SELECT ArticleID, ArticleName FROM Articles");
+            PreparedStatement ps = Main.db.prepareStatement("SELECT Articles.ArticleID, Articles.ArticleName, Users.Username FROM Articles INNER JOIN Users ON Articles.UserID=Users.UserID");
             ResultSet results = ps.executeQuery();
             while (results.next()==true) {
                 JSONObject row = new JSONObject();
                 row.put("ArticleID", results.getInt(1));
                 row.put("ArticleName", results.getString(2));
+                row.put("Username", results.getString(3));
                 response.add(row);
             }
             return response.toString();

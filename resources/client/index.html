@@ -3,34 +3,35 @@
 <head>
     <meta charset='UTF-8'/>
     <title>ART-icles</title>
-    <link rel='stylesheet' href='css/index.css'/>
+
+    <link rel='stylesheet' href="css/index.css"/>
     <script src="js/users.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
     <link rel="shortcut icon" type="image/jpg" href="img/favicon.ico"/>
 </head>
 <body>
+
 <div class='header-container'>
     <div class='logo'><a href='#'><img src='img/Art-icles.PNG' title='ART-icles' alt="ARTICLES LOGO"/></a></div>
-    <div class="categories"><ul class='dropdown' id="menu">
-        <li><a href='#'><span>Drawing & Painting</span></a></li>
-        <li><a href='#'><span>Photography</span></a></li>
-        <li><a href='#'><span>Design</span></a></li>
-        <li class='dropbtn'>All Categories &#9662;
-        <div class='dropdown-content'>           <!-- Start of submenu -->
-            <a href='#'>Category 1</a>
-            <a href='#'>Category 2</a>
-            <a href='#'>Category 3</a>
-            <a href='#'>Category 4</a>
+    <div class="categories">
+        <a href='#'>Drawing & Painting</a>
+        <a href='#'>Photography</a>
+        <a href='#'>Design</a>
+        <div class='dropbtn'>All Categories &#9662;
+            <div class='dropdown-content'>
+                <a href='#'>Category 1</a>
+                <a href='#'>Category 2</a>
+                <a href='#'>Category 3</a>
+                <a href='#'>Category 4</a>
+            </div>
         </div>
-        </li>
-     </ul></div>                                     <!-- End of submenu -->
+     </div>
     <div class='user-section'>
         <div class='user-properties'>
             <p><a href='#'>User Account</a></p><p><a onclick='logout();' href="#">Sign Out </a>|<a href='#'> Profile</a></p>
         </div>
         <div class='user-profile'><a href='#'><img src='img/user.png' title='User Account' alt="USER PHOTO"/></a></div>
     </div>
-    <button onclick='logout();'>LOGOUT</button>
 </div>
 </body>
 </html>

@@ -23,6 +23,7 @@ a:hover {
 .header-container {
     position: fixed;
     display: flex;
+    felx-wrap: wrap;
     justify-content: space-between;
     border: 1px solid black;
     width: 100%;
@@ -46,7 +47,6 @@ a:hover {
 .dropbtn {
     background-color: #4CAF50;
     color: white;
-    padding: 16px;
     font-size: 16px;
     border: none;
 }
@@ -58,9 +58,7 @@ a:hover {
     padding: 10px;
     align-self: flex-end;
 }
-ul#menu li {
-    display: inline;
-}
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -86,10 +84,7 @@ ul#menu li {
 
 .categories {
     width: 100%;
-    display: table-cell;
     vertical-align: bottom;
+    display: table-cell;
 }
 
-span {
-    justify-content: space-between;
-}
