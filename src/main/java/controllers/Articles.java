@@ -60,13 +60,14 @@ public class Articles{
         }
     }
     @POST
-    @Path("delete/{ArticleID}")
-    public String DeleteArticle(@PathParam("ArticleID") Integer ArticleID) {
+    @Path("delete")
+    public String DeleteArticle(@FormDataParam("ArticleID") Integer ArticleID) {
         System.out.println("Invoked Articles.DeleteArticle() with ArticleID " + ArticleID);
         try{
             PreparedStatement ps = Main.db.prepareStatement("DELETE FROM Articles WHERE ArticleID = ?" );
             ps.setInt(1, ArticleID);
-            return "{\"OK\": \"Article Deleted.\"}";
+            ps.executeUpdate();
+            return "{\"OK\": \"Article \" Deleted.\"}";
         } catch (Exception exception) {
             System.out.println("Database error: " + exception.getMessage());
             return "{\"Error\": \"Unable to get item, please see server console for more info.\"}";

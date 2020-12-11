@@ -27,7 +27,7 @@ public class Users{
             while (results.next()==true) {
                 JSONObject row = new JSONObject();
                 row.put("UserID", results.getInt(1));
-                row.put("UserName", results.getString(2));
+                row.put("Username", results.getString(2));
                 response.add(row);
             }
             return response.toString();
@@ -36,6 +36,7 @@ public class Users{
             return "{\"Error\": \"Unable to list items.  Error code xx.\"}";
         }
     }
+
     @GET
     @Path("get/{UserID}")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -89,9 +90,7 @@ public class Users{
             ResultSet loginResults = ps1.executeQuery();
             if (loginResults.next() == true) {
                 String correctPassword = loginResults.getString(1);
-                System.out.println("If 1");
                 if (Password.equals(correctPassword)) {
-                    System.out.println("If 2");
                     String Token = UUID.randomUUID().toString();
                     PreparedStatement ps2 = Main.db.prepareStatement("UPDATE Users SET Token = ? WHERE Username = ?");
                     ps2.setString(1, Token);
@@ -102,18 +101,16 @@ public class Users{
                     userDetails.put("Token", Token);
                     return userDetails.toString();
                 } else {
-                    System.out.println("Else 1");
                     return "{\"Error\": \"Incorrect password!\"}";
                 }
             } else {
-                System.out.println("Else 2");
                 return "{\"Error\": \"Incorrect username.\"}";
             }
         } catch (Exception exception) {
-            System.out.println("Database error during /users/login: " + exception.getMessage());
             return "{\"Error\": \"Server side error!\"}";
         }
     }
+
     public static int validToken(String Token) {
         System.out.println("Invoked User.validateToken(), Token value " + Token);
         try {
@@ -127,6 +124,7 @@ public class Users{
             return -1;  //rogue value indicating error
         }
     }
+
     @POST
     @Path("logout")
     public static String logout(@CookieParam("Token") String Token){
