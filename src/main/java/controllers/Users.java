@@ -63,15 +63,16 @@ public class Users{
     }
 
     @POST
-    @Path("pushlogin")
-    public String UsersAdd(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("DateOfBirth") String DateOfBirth, @FormDataParam("Password") String Password) {
+    @Path("pushLogin")
+    public String UsersAdd(@FormDataParam("FirstName") String FirstName, @FormDataParam("LastName") String LastName ,@FormDataParam("Username") String Username, @FormDataParam("DateOfBirth") String DateOfBirth, @FormDataParam("Password") String Password) {
         System.out.println("Invoked Users.UsersAdd()");
         try {
-            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Users (UserID, Username, DateOfBirth, Password) VALUES (?, ?, ?, ?)");
-            ps.setInt(1, UserID);
-            ps.setString(2, Username);
-            ps.setString(3, DateOfBirth);
-            ps.setString(4, Password);
+            PreparedStatement ps = Main.db.prepareStatement("INSERT INTO Users (FirstName, LastName, Username, DateOfBirth, Password) VALUES (?, ?, ?, ?, ?)");
+            ps.setString(1,FirstName);
+            ps.setString(2,LastName);
+            ps.setString(3, Username);
+            ps.setString(4, DateOfBirth);
+            ps.setString(5, Password);
             ps.execute();
             return "{\"OK\": \"Added user.\"}";
         } catch (Exception exception) {
@@ -171,11 +172,6 @@ public class Users{
             return "{\"Error\": \"Unable to get item, please see server console for more info.\"}";
         }
     }
-
-
-
-
-
 }
 
 

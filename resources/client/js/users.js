@@ -12,7 +12,7 @@ function logout() {
         } else {
             Cookies.remove("Token", response.Token);    //UserName and Token are removed
             Cookies.remove("UserName", response.Username);
-            window.open("index.html", "_self");       //open index.html in same tab
+            window.location.replace("http://localhost:8081/client/index.html")       //open index.html in same tab
         }
     });
 }
@@ -34,7 +34,29 @@ function UsersLogin() {
         } else {
             Cookies.set("Token", response.Token);
             Cookies.set("Username", response.Username);
-            window.open("index__logged-in.html", "_self");       //open index.html in same tab
+            console.log("Here");
+            window.location.replace("http://localhost:8081/client/index__logged-in.html")       //open index.html in same tab
+        }
+    });
+}
+
+function createAccount() {
+    //debugger;
+    console.log("Invoked createAccount()");
+    let url = "/users/pushLogin";
+    let formData =  new FormData(document.getElementById('AccountForm'));
+
+    fetch(url, {
+        method: "POST",
+        body: formData,
+    }).then(response => {
+        return response.json();
+    }).then(response => {
+        if(response.hasOwnProperty("Error")){
+            alert(JSON.stringify(response));
+        } else {
+            console.log("Here");
+            window.location.replace("http://localhost:8081/client/login.html")
         }
     });
 }

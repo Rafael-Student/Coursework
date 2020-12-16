@@ -134,26 +134,6 @@ a {
     margin: 0 0 8px;
 }
 
-.dropdown label {
-    font-size: 12px;
-    color: var(--text-color);
-    display: block;
-}
-
-.dropdown select {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
-    height: 28px;
-    padding: 0;
-}
-
-.date-of-birth__inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-}
-
 .consents {
     font-size: 12px;
     color: var(--text-color);

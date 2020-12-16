@@ -28,18 +28,18 @@
                     Already have an account? <a href="login.html">Sign In</a>
                 </p>
 
-                <form onsubmit="alert('success')">
+                <form onsubmit="createAccount()" id="AccountForm">
 
                     <div class="name">
                         <div class="input">
                             <label for="first-name">First Name</label>
-                            <input type="text" required id="first-name"/>
+                            <input type="text" required id="first-name" name="FirstName"/>
                             <div class="input__indicator"></div>
                         </div>
 
                         <div class="input">
                             <label for="last-name">Last Name</label>
-                            <input type="text" required id="last-name"/>
+                            <input type="text" required id="last-name" name="LastName"/>
                             <div class="input__indicator"></div>
                         </div>
                     </div>
@@ -47,54 +47,20 @@
 
                     <div class="input">
                         <label for="username">User Name</label>
-                        <input type="text" required id="username"/>
+                        <input type="text" required id="username" name="Username"/>
                         <div class="input__indicator"></div>
                     </div>
 
                     <div class="input">
                         <label for="password">Password</label>
-                        <input type="password" required id="password"/>
+                        <input type="password" required id="password" name="Password"/>
                         <div class="input__indicator"></div>
                     </div>
 
-                    <div class="date-of-birth">
-                        <h6 class="date-of-birth__heading">
-                            Date of birth
-                        </h6>
-
-                        <div class="date-of-birth__inputs">
-                            <div class="dropdown">
-                                <label for="month">Month</label>
-
-                                <select name="month" id="month">
-                                    <option value="january">January</option>
-                                    <option value="february">February</option>
-                                    <option value="march">March</option>
-                                    <option value="april">April</option>
-                                    <option value="may">May</option>
-                                    <option value="june">June</option>
-                                    <option value="july">July</option>
-                                    <option value="august">August</option>
-                                    <option value="september">September</option>
-                                    <option value="october">October</option>
-                                    <option value="november">November</option>
-                                    <option value="december">December</option>
-                                </select>
-                            </div>
-
-                            <div class="input">
-                                <label for="day">Day</label>
-                                <input type="number" required id="day" min="1" max="31"/>
-                                <div class="input__indicator"></div>
-                            </div>
-
-                            <div class="input">
-                                <label for="year">Year</label>
-                                <input type="number" required id="year" min="1900" max="2020"/>
-                                <div class="input__indicator"></div>
-                            </div>
-                        </div>
-
+                    <div class="input">
+                        <label for="date-of-birth">Date Of Birth</label>
+                        <input type="text" required id="date-of-birth" name="DateOfBirth" placeholder="dd/mm/yyyy"/>
+                        <div class="input__indicator"></div>
                     </div>
                     <p class="consents">
                         By clicking Create account, I agree that I have read and accepted the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy.</a>
