@@ -3,14 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpg" href="img/favicon.ico"/>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
     <script src="/client/js/users.js"></script>
 </head>
 <body>
-<form id="LoginForm">
-    <input type="text" name="Username" id="Username">
-    <input type="password" name="Password" id="Password">
-</form>
-<button class="button" onclick='UsersLogin();'>LOGIN</button>  <!--UsersLogin()in users.js-->
+<div class="background-over">
+    <div id="container">
+        <div class="logo-container">
+            <img src="img/Art-icles.png" width="250" height="100" alt=""/>
+        </div>
+
+        <div class="panel-container">
+            <div class="panel">
+                <h1 class="panel__heading">Login</h1>
+
+                <form onsubmit="UsersLogin();" id="LoginForm">  <!-- UserLogin() in js -->
+
+                    <div class="input">
+                        <label for="Username">User Name</label>
+                        <input type="text" required id="Username" name="Username"/>
+                        <div class="input__indicator"></div>
+                    </div>
+
+                    <div class="input">
+                        <label for="Password">Password</label>
+                        <input type="password" required id="Password" name="Password"/>
+                        <div class="input__indicator"></div>
+                    </div>
+
+                    <button type="submit" >Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var images = ["fall.jpeg", "leaf.jpeg", "flowerPlant.jpeg"];
+    function changeBackground() {
+        var randomNumber = Math.floor(Math.random()*images.length);
+        document.body.style.backgroundImage = "url(/client/img/"+images[randomNumber];
+    }
+
+    window.onload = changeBackground();
+</script>
+
 </body>
 </html>

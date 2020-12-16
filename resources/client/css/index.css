@@ -1,90 +1,185 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    font: inherit;
+    color: inherit;
 }
 
 body {
-    height: 1200px;
-    font-family: sans-serif;
-    font-size: 18px;
-    color: #596063;
+    font-family: 'Padauk', sans-serif;
+    padding:0;
+    margin:0;
+    color: #333;
 }
 
-a:link,
-a:visited {
-    color: #5D6063;
+p{
+    max-width: 200px;
+}
+
+#container {
+    max-width: 1200px;
+    padding:24px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height:100vh;
+}
+
+header{
+    display:flex;
+    align-items: center;
+}
+.navigation {
+    flex-grow: 1;
+    margin-left: 40px;
+}
+
+.navigation--item {
     text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+    color: #bdbdbd;
+    margin-left:24px;
 }
 
-.header-container {
-    position: fixed;
+.navigation--item__active  {
+    color: #333;
+}
+
+.navigation--button {
+    border: none;
+    background: rgb(2,0,36);
+    background: linear-gradient(115deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 77%);
+    padding: 10px 36px;
+    border-radius: 50px;
+    color: white;
+}
+
+main {
     display: flex;
-    felx-wrap: wrap;
-    justify-content: space-between;
-    border: 1px solid black;
-    width: 100%;
-    padding: 20px;
-    background: #D6E9FE;
-}
-
-.user-section {
     align-items: center;
 }
 
-.user-properties{
-    padding: 10px;
+.main--content {
+    flex: 1;
+    margin-top: 40px;
+    margin-bottom: 40px
 }
 
-.user-profile{
-    padding: 10px;
-    justify-content: center;
+.headline {
+    font-size: 52px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
 }
 
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    border: none;
+.description{
+    color:#828282;
+    padding: 0;
+
+    margin: 24px 0 40px;
+}
+.main--img {
+    flex: 1;
 }
 
-.dropdown {
-    margin: auto;
-    width:50%;
-    border: 3px;
-    padding: 10px;
-    align-self: flex-end;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgb(0, 0, 0);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {background-color: #ddd;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-
-.categories {
+.main--img img {
     width: 100%;
-    vertical-align: bottom;
-    display: table-cell;
 }
 
+footer {
+    display:flex;
+    color: #bdbdbd;
+}
+
+.socials {
+    margin-right: 40px;
+}
+
+.socials--item {
+    margin-right: 40px;
+}
+.socials--item:hover{
+    color: #333;
+}
+.menu-button {
+    flex-grow: 1;
+    display:none;
+}
+
+.menu-user {
+    padding: 0;
+    margin: 8px;
+}
+
+.menu-button button {
+    border:none;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+
+.mobile-navigation{
+    position:fixed;
+    width:100vw;
+    height:100vh;
+    background-color: white;
+    padding: 24px;
+
+    display:none;
+
+    transform: translateX(-100%);
+    transition: transform 300ms ease-in-out;
+}
+
+.mobile-navigation__open {
+    transform: translateX(0);
+}
+
+.mobile-navigation--header {
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom: 40px;
+}
+
+.close-button{
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+}
+
+.close-button button {
+    border:none;
+    background-color: transparent;
+    font-size: 1.5rem;
+}
+.mobile-navigation--item{
+    text-decoration: none;
+    font-size:1.5rem;
+    color:#bdbdbd;
+    display:block;
+    margin-bottom: 24px;
+}
+
+.mobile-navigation--item__active{
+    color: #333;
+}
+
+@media only screen and (max-width: 660px) {
+    main {
+        display:block;
+    }
+
+    header .logo {
+        display:none;
+    }
+    .navigation {
+        display: none;
+    }
+
+    .mobile-navigation{
+        display:block;
+    }
+
+    .menu-button{
+        display: block;
+    }
+}

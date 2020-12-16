@@ -61,6 +61,7 @@ public class Users{
             return "{\"Error\": \"Unable to get item, please see server console for more info.\"}";
         }
     }
+
     @POST
     @Path("pushlogin")
     public String UsersAdd(@FormDataParam("UserID") Integer UserID, @FormDataParam("Username") String Username, @FormDataParam("DateOfBirth") String DateOfBirth, @FormDataParam("Password") String Password) {
@@ -149,6 +150,28 @@ public class Users{
             return "{\"error\": \"Server side error!\"}";
         }
     }
+
+    @GET
+    @Path("get-user")
+    public String GetUserToken(@CookieParam("Token") String Token) {
+        System.out.println("Invoked Users.GetUserToken() with Token " + Token);
+        try {
+            PreparedStatement ps = Main.db.prepareStatement("SELECT Username FROM Users WHERE Token = ?");
+            ps.setString(1, Token);
+            ResultSet results = ps.executeQuery();
+            JSONObject response = new JSONObject();
+            if (results.next()== true) {
+                response.put("Username", results.getString(1));
+            } else{
+                System.out.println("Cannot find User with  that Token");
+            }
+            return response.toString();
+        } catch (Exception exception) {
+            System.out.println("Database error: " + exception.getMessage());
+            return "{\"Error\": \"Unable to get item, please see server console for more info.\"}";
+        }
+    }
+
 
 
 
