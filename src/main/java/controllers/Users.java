@@ -99,7 +99,7 @@ public class Users{
                     ps2.setString(2, Username);
                     ps2.executeUpdate();
                     JSONObject userDetails = new JSONObject();
-                    userDetails.put("UserName", Username);
+                    userDetails.put("Username", Username);
                     userDetails.put("Token", Token);
                     return userDetails.toString();
                 } else {

@@ -11,7 +11,7 @@ function logout() {
             alert(JSON.stringify(response));        // if it does, convert JSON object to string and alert
         } else {
             Cookies.remove("Token", response.Token);    //UserName and Token are removed
-            Cookies.remove("UserName", response.Username);
+            Cookies.remove("Username", response.Username);
             window.location.replace("http://localhost:8081/client/index.html")       //open index.html in same tab
         }
     });
@@ -41,7 +41,7 @@ function UsersLogin() {
 }
 
 function createAccount() {
-    //debugger;
+    debugger;
     console.log("Invoked createAccount()");
     let url = "/users/pushLogin";
     let formData =  new FormData(document.getElementById('AccountForm'));
@@ -78,5 +78,5 @@ function GetUser() {
         } else {
             document.getElementById("user").innerHTML = 'Hello, ' + pos;
         }
-    })
+    });
 }
